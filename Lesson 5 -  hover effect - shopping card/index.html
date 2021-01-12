@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue Mastery</title>
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <!-- Import Vue.js -->
+    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+
+    <div id="app">
+      <div class="nav-bar"></div>
+
+      <div class="cart">Cart({{ cart }})</div>
+      
+      <div class="product-display">
+        <div class="product-container">
+          <div class="product-image">
+            <img v-bind:src="image">
+          </div>
+          <div class="product-info">
+            <h1>{{ product }}</h1>
+            <p v-if="inStock">In Stock</p>
+            <p v-else>Out of Stock</p>
+            <ul>
+              <li v-for="detail in details">{{ detail }}</li>
+            </ul>
+
+            <ul>
+              <li v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">{{ variant.color }}</li>
+              <!-- @mouseover= vue version of hover -> when that happends we want to update our image -->
+
+            </ul>
+
+            <ul>
+              <li v-for="size in sizes">{{ size }}</li>
+            </ul>
+
+            <button class="button" v-on:click="addToCart">Add to Cart</button>
+            <button class="button" v-on:click="RemoveFromCart">Remove from Cart</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Import App -->
+    <script src="./main.js"></script>
+
+    <!-- Mount App -->
+    <script>
+      const mountedApp = app.mount('#app')
+      // app gets the app we made in main.js and wich we have imported \(<!-- Import App -->\)
+      // the argument ('#app') imports the app in id="app"
+    </script>
+
+  </body>
+</html>
